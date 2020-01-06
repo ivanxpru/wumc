@@ -1,0 +1,14 @@
+doctype html
+html(lang="ru")
+  head
+    title= title
+    meta(charset="utf-8")
+    meta(content="width=device-width, initial-scale=1", name="viewport")
+    link(rel="stylesheet", href="/styles/style.css")
+  body
+    .wrapper#wrapper
+      block hero
+    block footer
+      include ./common/footer
+    block scripts
+      

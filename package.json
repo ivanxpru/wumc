@@ -1,0 +1,28 @@
+{
+  "name": "wumc",
+  "version": "1.0.0",
+  "description": "Wii U Media Center",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivanxpru/wumc.git"
+  },
+  "keywords": [
+    "wiiu"
+  ],
+  "author": "ivanxpru",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/ivanxpru/wumc/issues"
+  },
+  "homepage": "https://github.com/ivanxpru/wumc#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "pug": "^2.0.4"
+  }
+}

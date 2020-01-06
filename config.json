@@ -1,0 +1,25 @@
+{
+  "express": {
+    "port": 9000
+  },
+  "library": {
+    "tv": [
+      {
+        "directory": "/media/320G/tv",
+        "path": "/320G/tv"
+      }
+    ],
+    "movies": [
+      {
+        "directory": "/media/320G/movies",
+        "path": "/320G/movies"
+      }
+    ],
+    "serials": [
+      {
+        "directory": "/media/320G/serials",
+        "path": "/320G/serials"
+      }
+    ]
+  }
+}
