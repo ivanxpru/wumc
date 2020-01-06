@@ -1,3 +1,4 @@
+const fs = require('fs');
 const express = require("express");
 const router = express.Router();
 const library = require(__basedir + "/app/modules/library");
@@ -19,6 +20,9 @@ const sortNames =  (a, b) => {
 
 //Обновление каталога
 router.get("/update", function (_req, res) {
+  if (!fs.existsSync(__basedir + "data")){
+    fs.mkdirSync(__basedir + "/data");
+}
   //library.getTV();
   library.getMovies();
   library.getSerials();
