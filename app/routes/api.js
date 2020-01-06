@@ -90,7 +90,7 @@ router.get("/serials", function (req, res) {
   });
   titles.sort(sortTitles);
   response.titles = titles;
-  res.json(serials);
+  res.json(response);
 });
 
 // Отдельный сериал
