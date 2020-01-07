@@ -56,14 +56,14 @@ a {
 .hero__wrap {
   position: relative;
   z-index: 10;
-  width: 90%;
+  width: 85%;
   height: 100%;
   margin: 0 auto;
   padding: 10px;
 }
 
 .hero__wrap--index {
-  width: 70%;
+  width: 85%;
   margin: 0 auto;
 }
 
