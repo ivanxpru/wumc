@@ -106,6 +106,7 @@ a {
   position: relative;
   float: left;
   margin-right: 15px;
+  margin-bottom: 15px;
 }
 
 .hero__playlist {
@@ -114,7 +115,7 @@ a {
 }
 
 .cover__link {
-  display: inline-block;
+  /*display: inline-block;*/
 }
 
 .cover__link--overview {
