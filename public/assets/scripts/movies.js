@@ -48,17 +48,17 @@ hero.appendChild(heroWrap);
 
 setInterval(function(){
   wiiu.gamepad.update();
-  if (wiiu.gamepad.lStickX > 0) {
-    lastScroll = lastScroll - Math.abs(wiiu.gamepad.lStickX*20);
+  if (wiiu.gamepad.lStickY > 0) {
+    lastScroll = lastScroll - Math.abs(wiiu.gamepad.lStickY*20);
   }
-  if (wiiu.gamepad.lStickX < 0) {
-    lastScroll = lastScroll + Math.abs(wiiu.gamepad.lStickX*20);
+  if (wiiu.gamepad.lStickY < 0) {
+    lastScroll = lastScroll + Math.abs(wiiu.gamepad.lStickY*20);
   }
-  if (lastScroll > heroCovers.scrollWidth - heroCovers.clientWidth) {
-    lastScroll = heroCovers.scrollWidth - heroCovers.clientWidth;
+  if (lastScroll > heroCovers.scrollHeight - heroCovers.clientHeight) {
+    lastScroll = heroCovers.scrollHeight - heroCovers.clientHeight;
   }
   if (lastScroll < 0) {
     lastScroll = 0;
   }
-  heroCovers.scrollLeft = lastScroll;
+  heroCovers.scrollTop = lastScroll;
 }, 100);
