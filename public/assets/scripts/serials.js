@@ -35,7 +35,7 @@ data.titles.forEach(function (serial) {
   var heroCover = document.createElement("div");
   heroCover.className = "hero__cover cover";
   heroCover.style.background = "url('" + protocol + "//" + hostname + serial.path + "/poster.jpg') no-repeat center center";
-  heroCover.style.backgroundSize = "contain";
+  heroCover.style.backgroundSize = "cover";
   coverLink.appendChild(heroCover);
   heroCovers.appendChild(coverLink);
 });
