@@ -32,7 +32,7 @@ if (xhr.status != 200) {
 heroTitle.innerText = data.titles[0].title + " • " + data.titles[0].seasons[0].title;
 heroHeader.appendChild(heroTitle);
 coverLink.href = "/serial/title/" + data.titles[0].title;
-heroCover.style.background = "url('" + protocol + "//" + hostname + data.titles[0].path + "/" + data.titles[0].seasons[0].title + "/poster.jpg') no-repeat center center";
+heroCover.style.background = "url('" + protocol + "//" + hostname + data.titles[0].path + "/" + data.titles[0].seasons[0].title + "/poster.jpg') no-repeat left center";
 heroCover.style.backgroundSize = "contain";
 coverLink.appendChild(heroCover);
 data.titles[0].seasons[0].episodes.forEach(function (episode) {
