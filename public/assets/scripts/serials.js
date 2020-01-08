@@ -18,7 +18,7 @@ var path = window.location.pathname;
 
 
 var xhr = new XMLHttpRequest();
-var url = protocol + "//" + hostname + ":" + port + "api" + path;
+var url = protocol + "//" + hostname + ":" + port + "/api/" + path;
 xhr.open("GET", url, false);
 xhr.send();
 if (xhr.status != 200) {
@@ -35,7 +35,7 @@ data.titles.forEach(function (serial) {
   var heroCover = document.createElement("div");
   heroCover.className = "hero__cover cover";
   heroCover.style.background = "url('" + protocol + "//" + hostname + serial.path + "/poster.jpg') no-repeat center center";
-  heroCover.style.backgroundSize = "contain";
+  heroCover.style.backgroundSize = ;
   coverLink.appendChild(heroCover);
   heroCovers.appendChild(coverLink);
 });
