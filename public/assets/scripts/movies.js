@@ -46,19 +46,21 @@ heroWrap.appendChild(heroWatch);
 hero.style.backgroundSize = "cover";
 hero.appendChild(heroWrap);
 
-setInterval(function(){
-  wiiu.gamepad.update();
-  if (wiiu.gamepad.lStickY > 0) {
-    lastScroll = lastScroll - Math.abs(wiiu.gamepad.lStickY*20);
-  }
-  if (wiiu.gamepad.lStickY < 0) {
-    lastScroll = lastScroll + Math.abs(wiiu.gamepad.lStickY*20);
-  }
-  if (lastScroll > heroCovers.scrollHeight - heroCovers.clientHeight) {
-    lastScroll = heroCovers.scrollHeight - heroCovers.clientHeight;
-  }
-  if (lastScroll < 0) {
-    lastScroll = 0;
-  }
-  heroCovers.scrollTop = lastScroll;
-}, 100);
+if (wiiu.gamepad) {
+  setInterval(function(){
+    wiiu.gamepad.update();
+    if (wiiu.gamepad.lStickY > 0) {
+      lastScroll = lastScroll - Math.abs(wiiu.gamepad.lStickY*20);
+    }
+    if (wiiu.gamepad.lStickY < 0) {
+      lastScroll = lastScroll + Math.abs(wiiu.gamepad.lStickY*20);
+    }
+    if (lastScroll > heroCovers.scrollHeight - heroCovers.clientHeight) {
+      lastScroll = heroCovers.scrollHeight - heroCovers.clientHeight;
+    }
+    if (lastScroll < 0) {
+      lastScroll = 0;
+    }
+    heroCovers.scrollTop = lastScroll;
+  }, 100);
+}
