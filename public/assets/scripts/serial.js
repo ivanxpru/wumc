@@ -14,7 +14,7 @@ var hostname = window.location.hostname;
 var port = window.location.port;
 var path = window.location.pathname;
 var xhr = new XMLHttpRequest();
-var url = protocol + "//" + hostname + ":" + port + "api" + path;
+var url = protocol + "//" + hostname + ":" + port + "/api/" + path;
 
 xhr.open("GET", url, false);
 xhr.send();
