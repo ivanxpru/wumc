@@ -20,7 +20,7 @@ const sortNames =  (a, b) => {
 
 //Обновление каталога
 router.get("/update", function (_req, res) {
-  if (!fs.existsSync(__basedir + "data")){
+  if (!fs.existsSync(__basedir + "/data")){
     fs.mkdirSync(__basedir + "/data");
 }
   //library.getTV();
