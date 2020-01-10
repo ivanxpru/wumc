@@ -3,7 +3,7 @@ footerSerials.classList.add("menu__item--active");
 var hero = document.getElementById("hero");
 var heroWrap = document.createElement("div");
 heroWrap.className = "hero__wrap";
-var heroHeader = document.createElement("div");
+var heroHeader = document.createElement("header");
 heroHeader.className = "hero__header";
 var heroTitle = document.createElement("h2");
 heroTitle.className = "hero__title";
