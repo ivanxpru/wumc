@@ -1,20 +1,20 @@
-const config = require(__basedir + "/config.json");
-const fs = require("fs");
-const path = require("path");
+const config = require('../../config.json');
+const fs = require('fs');
+const path = require('path');
 // const tv = config.library.tv;
 const movies = config.library.movies;
-let tvChannels = {};
+const tvChannels = {};
 tvChannels.titles = [];
-let moviesGenres = [];
-let moviesTitles = {};
+const moviesGenres = [];
+const moviesTitles = {};
 moviesTitles.titles = [];
 const serials = config.library.serials;
-let serialsGenres = [];
-let serialsTitles = {};
+const serialsGenres = [];
+const serialsTitles = {};
 serialsTitles.titles = [];
 
 const getFolders = (directory) => {
-  let folders = [];
+  const folders = [];
   console.log(directory);
   fs.readdirSync(directory)
     .forEach(function (pathString) {
@@ -41,43 +41,43 @@ exports.getTV = () => {
 */
 exports.getMovies = () => {
   movies.forEach(function (data) {
-    let genres = getFolders(data.directory);
-    genres.forEach (function(genre) {
-      if(!moviesGenres.includes(genre)) {
+    const genres = getFolders(data.directory);
+    genres.forEach(function (genre) {
+      if (!moviesGenres.includes(genre)) {
         moviesGenres.push(genre);
       }
-      let titles = getFolders(path.resolve(data.directory, genre));
+      const titles = getFolders(path.resolve(data.directory, genre));
       titles.forEach(function (title) {
-        let movie = {};
+        const movie = {};
         movie.title = title;
         movie.genre = genre;
-        movie.overview = fs.readFileSync(path.resolve(data.directory, genre, title, "overview.txt"), "utf8");
+        movie.overview = fs.readFileSync(path.resolve(data.directory, genre, title, 'overview.txt'), 'utf8');
         movie.path = path.resolve(data.path, genre, title);
         moviesTitles.titles.push(movie);
-      }); 
+      });
     });
   });
-  fs.writeFileSync(__basedir + "/data/movies.json", JSON.stringify(moviesTitles, "", 4));
+  fs.writeFileSync('../../data/movies.json', JSON.stringify(moviesTitles, '', 4));
 };
 
 exports.getSerials = () => {
   serials.forEach(function (data) {
-    let genres = getFolders(data.directory);
-    genres.forEach (function (genre) {
-      if(!serialsGenres.includes(genre)) {
+    const genres = getFolders(data.directory);
+    genres.forEach(function (genre) {
+      if (!serialsGenres.includes(genre)) {
         serialsGenres.push(genre);
       }
-      let titles = getFolders(path.resolve(data.directory, genre));
+      const titles = getFolders(path.resolve(data.directory, genre));
       titles.forEach(function (title) {
-        let serial = {};
+        const serial = {};
         serial.title = title;
         serial.genre = genre;
-        serial.overview = fs.readFileSync(path.resolve(data.directory, genre, title, "overview.txt"), "utf8");
+        serial.overview = fs.readFileSync(path.resolve(data.directory, genre, title, 'overview.txt'), 'utf8');
         serial.path = path.resolve(data.path, genre, title);
         serial.seasons = [];
-        let seasons = getFolders(path.resolve(data.directory, genre, title));
+        const seasons = getFolders(path.resolve(data.directory, genre, title));
         seasons.forEach(function (season) {
-          let dataSeason = {};
+          const dataSeason = {};
           dataSeason.title = season;
           dataSeason.episodes = getFolders(path.resolve(data.directory, genre, title, season));
           serial.seasons.push(dataSeason);
@@ -86,5 +86,5 @@ exports.getSerials = () => {
       });
     });
   });
-  fs.writeFileSync(__basedir + "/data/serials.json", JSON.stringify(serialsTitles, "", 4));
+  fs.writeFileSync('../../data/serials.json', JSON.stringify(serialsTitles, '', 4));
 };

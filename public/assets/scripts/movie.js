@@ -1,36 +1,37 @@
 var hero = document.getElementById('hero');
 var heroWrap = document.createElement('div');
-heroWrap.className = 'hero__wrap';
 var heroHeader = document.createElement('header');
-heroHeader.className = 'hero__header';
 var heroTitle = document.createElement('h2');
-heroTitle.className = 'hero__title';
 var heroGenre = document.createElement('div');
-heroGenre.className = 'hero__genre';
 var heroCover = document.createElement('div');
-heroCover.className = 'hero__cover cover';
 var heroOverview = document.createElement('div');
-heroOverview.className = 'hero__overview';
 var heroWatch = document.createElement('div');
-heroWatch.className ='hero__watch';
 var heroLink = document.createElement('a');
-heroLink.className = 'hero__link';
 var heroHome = document.createElement('div');
-heroHome.className = 'hero__home';
-heroHome.innerText = '';
 var protocol = window.location.protocol;
 var hostname = window.location.hostname;
 var port = window.location.port;
 var path = window.location.pathname;
 var url = protocol + '//' + hostname + ':' + port + '/api/' + path;
-
 var xhr = new XMLHttpRequest();
+var data;
+
+heroWrap.className = 'hero__wrap';
+heroHeader.className = 'hero__header';
+heroTitle.className = 'hero__title';
+heroGenre.className = 'hero__genre';
+heroCover.className = 'hero__cover cover';
+heroOverview.className = 'hero__overview';
+heroWatch.className = 'hero__watch';
+heroLink.className = 'hero__link';
+heroHome.className = 'hero__home';
+heroHome.innerText = '';
 xhr.open('GET', url, false);
 xhr.send();
-if (xhr.status != 200) {
-  alert( xhr.status + ': ' + xhr.statusText );
+if (xhr.status !== 200) {
+  alert(xhr.status + ': ' + xhr.statusText);
 } else {
-  var data = JSON.parse(xhr.response);
+  data = JSON.parse(xhr.response);
 }
 heroTitle.innerText = data.titles[0].title;
 heroGenre.innerText = '#' + data.titles[0].genre;
