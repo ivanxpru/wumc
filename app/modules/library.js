@@ -58,7 +58,7 @@ exports.getMovies = () => {
       });
     });
   });
-  fs.writeFileSync('../../data/movies.json', JSON.stringify(moviesTitles, '', 4));
+  fs.writeFileSync('./data/movies.json', JSON.stringify(moviesTitles, '', 4));
 };
 
 exports.getSerials = () => {
@@ -87,5 +87,5 @@ exports.getSerials = () => {
       });
     });
   });
-  fs.writeFileSync('../../data/serials.json', JSON.stringify(serialsTitles, '', 4));
+  fs.writeFileSync('./data/serials.json', JSON.stringify(serialsTitles, '', 4));
 };
