@@ -1,6 +1,7 @@
-const config = require('../../config.json');
 const fs = require('fs');
 const path = require('path');
+const config = require('../../config.json');
+
 // const tv = config.library.tv;
 const movies = config.library.movies;
 const tvChannels = {};

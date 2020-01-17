@@ -34,7 +34,7 @@ heroHeader.appendChild(heroTitle);
 data.titles.forEach(function (channel) {
   var heroChannel = document.createElement('li');
   var channelLink = document.createElement('a');
-  heroChannel.className = 'hero__channel'
+  heroChannel.className = 'hero__channel';
   channelLink.className = 'channel__link';
   channelLink.href = channel.url_hls;
   channelLink.innerText = channel.name;

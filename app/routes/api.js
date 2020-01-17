@@ -1,5 +1,8 @@
 const fs = require('fs');
 const express = require('express');
+const channels = require('../../data/tv.json');
+const movies = require('../../data/movies.json');
+const serials = require('../../data/serials.json');
 
 const router = express.Router();
 const library = require('../modules/library');
@@ -7,17 +10,15 @@ const library = require('../modules/library');
 const sortTitles = (a, b) => {
   if (a.title < b.title) {
     return -1;
-  } else {
-    return 1;
   }
+  return 1;
 };
 
 const sortNames = (a, b) => {
   if (a.name < b.name) {
     return -1;
-  } else {
-    return 1;
   }
+  return 1;
 };
 
 // Обновление каталога
@@ -40,7 +41,6 @@ router.use(function (req, res, next) {
 
 // Полный каталог ТВ каналов
 router.get('/tv', function (req, res) {
-  const channels = require('../../data/tv.json');
   const titles = [];
   channels.playlist.feed.forEach(function (channel) {
     titles.push(channel);
@@ -53,8 +53,6 @@ router.get('/tv', function (req, res) {
 
 // Полный каталог фильмов
 router.get('/movies', function (req, res) {
-  // library.getMovies();
-  const movies = require('../../data/movies.json');
   const response = {};
   const titles = [];
   movies.titles.forEach(function (movie) {
@@ -68,7 +66,6 @@ router.get('/movies', function (req, res) {
 // Отдельный фильм
 router.get('/movie/title/:title', function (req, res) {
   const title = decodeURI(req.params.title);
-  const movies = require('../../data/movies.json');
   const result = movies.titles.filter(function (el) {
     return el.title.indexOf(title) > -1;
   });
@@ -79,8 +76,6 @@ router.get('/movie/title/:title', function (req, res) {
 
 // Полный каталог сериалов
 router.get('/serials', function (req, res) {
-  // library.getSerials();
-  const serials = require('../../data/serials.json');
   const response = {};
   const titles = [];
   serials.titles.forEach(function (serial) {
@@ -99,7 +94,6 @@ router.get('/serials', function (req, res) {
 router.get('/serial/title/:title', function (req, res) {
   const { title } = req.params;
   library.getSerials(req.app.locals.collectionSerials);
-  const serials = require('../../data/serials.json');
   const resultSerial = serials.titles.filter(function (el) {
     return el.title.indexOf(title) > -1;
   });
@@ -111,7 +105,6 @@ router.get('/serial/title/:title', function (req, res) {
 // Отдельный сезон сериала
 router.get('/serial/title/:title/:season', function (req, res) {
   library.getSerials(req.app.locals.collectionSerials);
-  const serials = require('../../data/serials.json');
   const serial = serials.titles.filter(function (el) {
     return el.title.indexOf(req.params.title) > -1;
   });
@@ -130,7 +123,6 @@ router.get('/serial/title/:title/:season', function (req, res) {
 
 // Случайный фильм
 router.get('/movies/random', function (_req, res) {
-  const movies = require('../../data/movies.json');
   const title = movies.titles[Math.floor(Math.random() * movies.titles.length)];
   const response = {};
   response.titles = [];
@@ -140,7 +132,6 @@ router.get('/movies/random', function (_req, res) {
 
 // Случайный сериал
 router.get('/serials/random', function (_req, res) {
-  const serials = require('../../data/serials.json');
   const serial = serials.titles[Math.floor(Math.random() * serials.titles.length)];
   const data = {};
   data.title = serial.title;
