@@ -93,8 +93,8 @@ router.get('/serials', function (req, res) {
 // Отдельный сериал
 router.get('/serial/title/:title', function (req, res) {
   const title = req.params;
+  console.log(title);
   // library.getSerials(req.app.locals.collectionSerials);
-  console.log(serials.titles);
   const resultSerial = serials.titles.filter(function (el) {
     return el.title.indexOf(title) > -1;
   });
