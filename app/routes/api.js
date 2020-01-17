@@ -1,7 +1,7 @@
 const fs = require('fs');
 const express = require('express');
 // const channels = require('../../data/tv.json');
-const movies = require('../../data/movies.json');
+const movies = require('../../data/serials.json');
 const serials = require('../../data/serials.json');
 
 const router = express.Router();
