@@ -4,7 +4,7 @@ const config = require('../config.json');
 
 const app = express();
 const appPort = config.express.port;
-const indexRouter = require('./routes/index');
+const indexRouter = require('./app/routes/index');
 const apiRouter = require('./routes/api');
 
 app.use(bodyParser.json());
