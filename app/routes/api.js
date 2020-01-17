@@ -1,6 +1,6 @@
 const fs = require('fs');
 const express = require('express');
-// const channels = require('../../data/tv.json');
+const channels = require('../../data/tv.json');
 const movies = require('../../data/movies.json');
 const serials = require('../../data/serials.json');
 
@@ -92,11 +92,9 @@ router.get('/serials', function (req, res) {
 
 // Отдельный сериал
 router.get('/serial/title/:title', function (req, res) {
-  const title = req.params.title;
-  console.log(title);
   // library.getSerials(req.app.locals.collectionSerials);
   const resultSerial = serials.titles.filter(function (el) {
-    return el.title.indexOf(title) > -1;
+    return el.title.indexOf(req.params.title) > -1;
   });
   const response = {};
   response.titles = resultSerial;
@@ -105,7 +103,7 @@ router.get('/serial/title/:title', function (req, res) {
 
 // Отдельный сезон сериала
 router.get('/serial/title/:title/:season', function (req, res) {
-  library.getSerials(req.app.locals.collectionSerials);
+  // library.getSerials(req.app.locals.collectionSerials);
   const serial = serials.titles.filter(function (el) {
     return el.title.indexOf(req.params.title) > -1;
   });
