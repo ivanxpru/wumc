@@ -97,7 +97,7 @@ router.get('/serial/title/:title', function (req, res) {
   });
   console.log(resultSerial);
   resultSerial.forEach(function (title) {
-    console.log(title);
+    // console.log(title);
   });
   const response = {};
   response.titles = resultSerial;
