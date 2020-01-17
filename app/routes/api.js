@@ -3,6 +3,7 @@ const express = require('express');
 // const channels = require('../../data/tv.json');
 const movies = require('../../data/movies.json');
 const serials = require('../../data/serials.json');
+console.log(serials);
 
 const router = express.Router();
 const library = require('../modules/library');
@@ -93,14 +94,12 @@ router.get('/serials', function (req, res) {
 // Отдельный сериал
 router.get('/serial/title/:title', function (req, res) {
   const title = req.params;
-  library.getSerials(req.app.locals.collectionSerials);
+  // library.getSerials(req.app.locals.collectionSerials);
   const resultSerial = serials.titles.filter(function (el) {
     return el.title.indexOf(title) > -1;
   });
   const response = {};
-  console.log(resultSerial);
   response.titles = resultSerial;
-  console.log(response);
   res.json(response);
 });
 
