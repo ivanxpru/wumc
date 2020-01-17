@@ -98,6 +98,7 @@ router.get('/serial/title/:title', function (req, res) {
     return el.title.indexOf(title) > -1;
   });
   const response = {};
+  console.log(resultSerial);
   response.titles = resultSerial;
   res.json(response);
 });
