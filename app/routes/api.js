@@ -65,9 +65,8 @@ router.get('/movies', function (req, res) {
 
 // Отдельный фильм
 router.get('/movie/title/:title', function (req, res) {
-  const title = decodeURI(req.params.title);
   const result = movies.titles.filter(function (el) {
-    return el.title.indexOf(title) > -1;
+    return el.title.indexOf(req.params.title) > -1;
   });
   const response = {};
   response.titles = result;
