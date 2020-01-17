@@ -95,6 +95,9 @@ router.get('/serial/title/:title', function (req, res) {
   const resultSerial = serials.titles.filter(function (el) {
     return el.title.indexOf(req.params.title) > -1;
   });
+  resultSerial.forEach(function (title) {
+    console.log(title);
+  });
   const response = {};
   response.titles = resultSerial;
   res.json(response);
