@@ -100,6 +100,7 @@ router.get('/serial/title/:title', function (req, res) {
   const response = {};
   console.log(resultSerial);
   response.titles = resultSerial;
+  console.log(response);
   res.json(response);
 });
 
