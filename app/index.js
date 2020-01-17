@@ -4,8 +4,8 @@ const config = require('../config.json');
 
 const app = express();
 const appPort = config.express.port;
-const indexRouter = require('./app/routes/index');
-const apiRouter = require('./app/routes/api');
+const indexRouter = require('./routes/index');
+const apiRouter = require('./routes/api');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
