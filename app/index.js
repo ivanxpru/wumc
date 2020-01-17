@@ -5,7 +5,7 @@ const config = require('../config.json');
 const app = express();
 const appPort = config.express.port;
 const indexRouter = require('./app/routes/index');
-const apiRouter = require('./routes/api');
+const apiRouter = require('./app/routes/api');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/styles', express.static('./public/assets/styles'));
 app.use('/scripts', express.static('./public/assets/scripts'));
 
-app.set('views', './views/pages');
+app.set('views', './app/views/pages');
 app.set('view engine', 'pug');
 
 app.use('/', indexRouter);
