@@ -1,21 +1,14 @@
 const fs = require('fs');
 const express = require('express');
-// const channels = require('../../data/tv.json');
+// const channels = require('../../data/tv.json')
 const movies = require('../../data/movies.json');
 const serials = require('../../data/serials.json');
+const library = require('../modules/library');
 
 const router = express.Router();
-const library = require('../modules/library');
 
 const sortTitles = (a, b) => {
   if (a.title < b.title) {
-    return -1;
-  }
-  return 1;
-};
-
-const sortNames = (a, b) => {
-  if (a.name < b.name) {
     return -1;
   }
   return 1;
@@ -40,6 +33,7 @@ router.use(function (req, res, next) {
 });
 
 // Полный каталог ТВ каналов
+/*
 router.get('/tv', function (req, res) {
   const titles = [];
   channels.playlist.feed.forEach(function (channel) {
@@ -50,9 +44,10 @@ router.get('/tv', function (req, res) {
   response.titles = titles;
   res.json(response);
 });
+*/
 
 // Полный каталог фильмов
-router.get('/movies', function (req, res) {
+router.get('/movies', function (_req, res) {
   const response = {};
   const titles = [];
   movies.titles.forEach(function (movie) {
