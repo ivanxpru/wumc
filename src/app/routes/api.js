@@ -49,6 +49,7 @@ router.get('/movies', (_req, res) => {
   if (!fs.existsSync('./dist/data/movies.json')) {
     library.getMovies();
   }
+  console.log(movies);
   movies.titles.forEach((movie) => {
     titles.push(movie);
   });
