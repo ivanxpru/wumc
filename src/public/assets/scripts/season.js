@@ -1,20 +1,20 @@
-var hero = document.getElementById('hero');
-var heroWrap = document.createElement('div');
-var coverLink = document.createElement('a');
-var heroCover = document.createElement('div');
-var heroPlaylist = document.createElement('ol');
-var heroHeader = document.createElement('header');
-var heroTitle = document.createElement('h2');
-var heroOverview = document.createElement('div');
-var wiiu;
-var lastScroll = 0;
-var protocol = window.location.protocol;
-var hostname = window.location.hostname;
-var port = window.location.port;
-var path = window.location.pathname;
-var xhr = new XMLHttpRequest();
-var url = protocol + '//' + hostname + ':' + port + '/api/' + path;
-var data;
+const hero = document.getElementById('hero');
+const heroWrap = document.createElement('div');
+const coverLink = document.createElement('a');
+const heroCover = document.createElement('div');
+const heroPlaylist = document.createElement('ol');
+const heroHeader = document.createElement('header');
+const heroTitle = document.createElement('h2');
+const heroOverview = document.createElement('div');
+const protocol = window.location.protocol;
+const hostname = window.location.hostname;
+const port = window.location.port;
+const path = window.location.pathname;
+const xhr = new XMLHttpRequest();
+const url = protocol + '//' + hostname + ':' + port + '/api/' + path;
+let data;
+let wiiu;
+let lastScroll = 0;
 
 heroWrap.className = 'hero__wrap';
 coverLink.className = 'cover__link cover__link--overview';
@@ -36,8 +36,8 @@ coverLink.href = '/serial/title/' + data.titles[0].title;
 heroCover.style.background = "url('" + protocol + '//' + hostname + data.titles[0].path + '/' + data.titles[0].seasons[0].title + "/poster.jpg') no-repeat left center";
 heroCover.style.backgroundSize = 'contain';
 coverLink.appendChild(heroCover);
-data.titles[0].seasons[0].episodes.forEach(function (episode) {
-  var heroEpisode = document.createElement('li');
+data.titles[0].seasons[0].episodes.forEach((episode) => {
+  const heroEpisode = document.createElement('li');
   heroEpisode.className = 'hero__episode';
   heroEpisode.innerHTML = "<a href='" + protocol + '//' + hostname + data.titles[0].path + '/' + data.titles[0].seasons[0].title + '/' + episode.replace('?', '%3f') + "/playlist.m3u8'>" + episode.split(/\.(.+)/)[1] + '</a>';
   heroPlaylist.appendChild(heroEpisode);
@@ -50,7 +50,7 @@ hero.style.background = "url('" + protocol + '//' + hostname + data.titles[0].pa
 hero.style.backgroundSize = 'cover';
 hero.appendChild(heroWrap);
 
-setInterval(function () {
+setInterval(() => {
   wiiu.gamepad.update();
   if (wiiu.gamepad.lStickY > 0) {
     lastScroll = lastScroll - Math.abs(wiiu.gamepad.lStickY * 20);

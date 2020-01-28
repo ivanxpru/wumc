@@ -1,19 +1,19 @@
-var menuItem = document.getElementById('tv');
-var hero = document.getElementById('hero');
-var heroWrap = document.createElement('div');
-var heroHeader = document.createElement('header');
-var heroTitle = document.createElement('h2');
-var heroPlaylist = document.createElement('ol');
-var heroOverview = document.createElement('div');
-var wiiu;
-var lastScroll = 0;
-var xhr = new XMLHttpRequest();
-var protocol = window.location.protocol;
-var hostname = window.location.hostname;
-var port = window.location.port;
-var path = window.location.pathname;
-var url = protocol + '//' + hostname + ':' + port + '/api' + path;
-var data;
+const menuItem = document.getElementById('tv');
+const hero = document.getElementById('hero');
+const heroWrap = document.createElement('div');
+const heroHeader = document.createElement('header');
+const heroTitle = document.createElement('h2');
+const heroPlaylist = document.createElement('ol');
+const heroOverview = document.createElement('div');
+const xhr = new XMLHttpRequest();
+const protocol = window.location.protocol;
+const hostname = window.location.hostname;
+const port = window.location.port;
+const path = window.location.pathname;
+const url = protocol + '//' + hostname + ':' + port + '/api' + path;
+let data;
+let wiiu;
+let lastScroll = 0;
 
 menuItem.classList.add('menu__item--active');
 heroWrap.className = 'hero__wrap';
@@ -31,9 +31,9 @@ if (xhr.status !== 200) {
 }
 heroTitle.innerText = 'TV Channels';
 heroHeader.appendChild(heroTitle);
-data.titles.forEach(function (channel) {
-  var heroChannel = document.createElement('li');
-  var channelLink = document.createElement('a');
+data.titles.forEach((channel) => {
+  const heroChannel = document.createElement('li');
+  const channelLink = document.createElement('a');
   heroChannel.className = 'hero__channel';
   channelLink.className = 'channel__link';
   channelLink.href = channel.url_hls;
@@ -49,7 +49,7 @@ hero.style.backgroundSize = 'cover';
 hero.appendChild(heroWrap);
 
 
-setInterval(function () {
+setInterval(() => {
   wiiu.gamepad.update();
   if (wiiu.gamepad.lStickY > 0) {
     lastScroll = lastScroll - Math.abs(wiiu.gamepad.lStickY * 20);

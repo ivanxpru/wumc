@@ -4,8 +4,9 @@
   "description": "Wii U Media Center",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "start": "node ./dist/app.js"
   },
   "repository": {
     "type": "git",
@@ -22,12 +23,22 @@
   "homepage": "https://github.com/ivanxpru/wumc#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "express": "^4.17.1",
-    "pug": "^2.0.4"
+    "express": "^4.17.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.1.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.19.1"
+    "eslint-plugin-import": "^2.19.1",
+    "path": "^0.12.7",
+    "pug": "^2.0.4",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1",
+    "webpack-node-externals": "^1.7.2"
   }
 }

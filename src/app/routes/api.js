@@ -1,11 +1,15 @@
+// eslint-disable-next-line import/no-unresolved
+import movies from '../../?data/movies.json';
+// eslint-disable-next-line import/no-unresolved
+import serials from '../../?data/serials.json';
+// import channels from '../../?data/tv.json';
+
 const fs = require('fs');
 const express = require('express');
-// const channels = require('../../data/tv.json')
-const movies = require('../../data/movies.json');
-const serials = require('../../data/serials.json');
 const library = require('../modules/library');
 
 const router = express.Router();
+
 
 const sortTitles = (a, b) => {
   if (a.title < b.title) {
@@ -15,10 +19,7 @@ const sortTitles = (a, b) => {
 };
 
 // Обновление каталога
-router.get('/update', function (_req, res) {
-  if (!fs.existsSync('../../data')) {
-    fs.mkdirSync('../../data');
-  }
+router.get('/update', (_req, res) => {
   // library.getTV();
   library.getMovies();
   library.getSerials();
@@ -26,7 +27,7 @@ router.get('/update', function (_req, res) {
 });
 
 // CORS on ExpressJS
-router.use(function (req, res, next) {
+router.use((_req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
@@ -47,10 +48,13 @@ router.get('/tv', function (req, res) {
 */
 
 // Полный каталог фильмов
-router.get('/movies', function (_req, res) {
+router.get('/movies', (_req, res) => {
   const response = {};
   const titles = [];
-  movies.titles.forEach(function (movie) {
+  if (!fs.existsSync('./dist/data/movies.json')) {
+    library.getMovies();
+  }
+  movies.titles.forEach((movie) => {
     titles.push(movie);
   });
   titles.sort(sortTitles);
@@ -59,20 +63,21 @@ router.get('/movies', function (_req, res) {
 });
 
 // Отдельный фильм
-router.get('/movie/title/:title', function (req, res) {
-  const result = movies.titles.filter(function (el) {
-    return el.title.indexOf(req.params.title) > -1;
-  });
+router.get('/movie/title/:title', (req, res) => {
+  const result = movies.titles.filter((el) => el.title.indexOf(req.params.title) > -1);
   const response = {};
   response.titles = result;
   res.json(response);
 });
 
 // Полный каталог сериалов
-router.get('/serials', function (req, res) {
+router.get('/serials', (req, res) => {
   const response = {};
   const titles = [];
-  serials.titles.forEach(function (serial) {
+  if (!fs.existsSync('./dist/data/serials.json')) {
+    library.getSerials();
+  }
+  serials.titles.forEach((serial) => {
     const data = {};
     data.title = serial.title;
     data.genre = serial.genre;
@@ -85,24 +90,18 @@ router.get('/serials', function (req, res) {
 });
 
 // Отдельный сериал
-router.get('/serial/title/:title', function (req, res) {
+router.get('/serial/title/:title', (req, res) => {
   // library.getSerials(req.app.locals.collectionSerials);
   const response = {};
-  response.titles = serials.titles.filter(function (el) {
-    return el.title.indexOf(req.params.title) > -1;
-  });
+  response.titles = serials.titles.filter((el) => el.title.indexOf(req.params.title) > -1);
   res.json(response);
 });
 
 // Отдельный сезон сериала
-router.get('/serial/title/:title/:season', function (req, res) {
+router.get('/serial/title/:title/:season', (req, res) => {
   // library.getSerials(req.app.locals.collectionSerials);
-  const serial = serials.titles.filter(function (el) {
-    return el.title.indexOf(req.params.title) > -1;
-  });
-  const season = serial[0].seasons.filter(function (el) {
-    return el.title.indexOf(req.params.season) > -1;
-  });
+  const serial = serials.titles.filter((el) => el.title.indexOf(req.params.title) > -1);
+  const season = serial[0].seasons.filter((el) => el.title.indexOf(req.params.season) > -1);
   const data = {};
   data.title = serial[0].title;
   data.path = serial[0].path;
@@ -114,7 +113,7 @@ router.get('/serial/title/:title/:season', function (req, res) {
 });
 
 // Случайный фильм
-router.get('/movies/random', function (_req, res) {
+router.get('/movies/random', (_req, res) => {
   const title = movies.titles[Math.floor(Math.random() * movies.titles.length)];
   const response = {};
   response.titles = [];
@@ -123,7 +122,7 @@ router.get('/movies/random', function (_req, res) {
 });
 
 // Случайный сериал
-router.get('/serials/random', function (_req, res) {
+router.get('/serials/random', (_req, res) => {
   const serial = serials.titles[Math.floor(Math.random() * serials.titles.length)];
   const data = {};
   data.title = serial.title;

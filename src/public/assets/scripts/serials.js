@@ -1,17 +1,17 @@
-var footerSerials = document.getElementById('serials');
-var hero = document.getElementById('hero');
-var heroWrap = document.createElement('div');
-var heroHeader = document.createElement('header');
-var heroTitle = document.createElement('h2');
-var heroCovers = document.createElement('div');
-var heroWatch = document.createElement('div');
-var protocol = window.location.protocol;
-var hostname = window.location.hostname;
-var port = window.location.port;
-var path = window.location.pathname;
-var xhr = new XMLHttpRequest();
-var url = protocol + '//' + hostname + ':' + port + '/api/' + path;
-var data;
+const footerSerials = document.getElementById('serials');
+const hero = document.getElementById('hero');
+const heroWrap = document.createElement('div');
+const heroHeader = document.createElement('header');
+const heroTitle = document.createElement('h2');
+const heroCovers = document.createElement('div');
+const heroWatch = document.createElement('div');
+const protocol = window.location.protocol;
+const hostname = window.location.hostname;
+const port = window.location.port;
+const path = window.location.pathname;
+const xhr = new XMLHttpRequest();
+const url = protocol + '//' + hostname + ':' + port + '/api/' + path;
+let data;
 
 footerSerials.classList.add('menu__item--active');
 heroWrap.className = 'hero__wrap';
@@ -29,9 +29,9 @@ if (xhr.status !== 200) {
 }
 heroTitle.innerText = 'Serials';
 heroHeader.appendChild(heroTitle);
-data.titles.forEach(function (serial) {
-  var coverLink = document.createElement('a');
-  var heroCover = document.createElement('div');
+data.titles.forEach((serial) => {
+  const coverLink = document.createElement('a');
+  const heroCover = document.createElement('div');
   coverLink.className = 'cover__link';
   coverLink.href = '/serial/title/' + serial.title;
   heroCover.className = 'hero__cover cover';

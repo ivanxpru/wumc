@@ -1,16 +1,16 @@
-var hero = document.getElementById('hero');
-var heroWrap = document.createElement('div');
-var heroHeader = document.createElement('header');
-var heroTitle = document.createElement('h2');
-var heroGenre = document.createElement('div');
-var heroOverview = document.createElement('div');
-var heroWatch = document.createElement('div');
-var heroLink = document.createElement('a');
-var opacity = 0;
-var protocol = window.location.protocol;
-var hostname = window.location.hostname;
-var port = window.location.port;
-var data;
+const hero = document.getElementById('hero');
+const heroWrap = document.createElement('div');
+const heroHeader = document.createElement('header');
+const heroTitle = document.createElement('h2');
+const heroGenre = document.createElement('div');
+const heroOverview = document.createElement('div');
+const heroWatch = document.createElement('div');
+const heroLink = document.createElement('a');
+const protocol = window.location.protocol;
+const hostname = window.location.hostname;
+const port = window.location.port;
+let data;
+let opacity = 0;
 
 heroWrap.className = 'hero__wrap hero__wrap--index';
 heroHeader.className = 'hero__header';
@@ -21,9 +21,9 @@ heroWatch.className = 'hero__watch';
 heroLink.className = 'hero__link';
 
 function createSlide() {
-  var url;
-  var type;
-  var xhr = new XMLHttpRequest();
+  let url;
+  let type;
+  const xhr = new XMLHttpRequest();
   if (Math.random() > 0.5) {
     url = protocol + '//' + hostname + ':' + port + '/api/movies/random';
     type = 'movie';
@@ -67,7 +67,7 @@ function removeSlide() {
 
 createSlide();
 
-setInterval(function () {
+setInterval(() => {
   if (opacity === 0) {
     hero.style.opacity = 0;
     opacity = 1;
