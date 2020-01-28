@@ -54,7 +54,7 @@ router.get('/movies', (_req, res) => {
   if (!fs.existsSync('./dist/data/movies.json')) {
     library.getMovies();
   }
-  movies.titles.forEach((movie) => {
+  movies.titles.forEach(function (movie) {
     titles.push(movie);
   });
   titles.sort(sortTitles);
