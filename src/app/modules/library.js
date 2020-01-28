@@ -1,9 +1,9 @@
-import config from '../../config.json';
-
 const fs = require('fs');
 const path = require('path');
 
 // const tv = config.library.tv;
+const config = require('../../config.json');
+
 const movies = config.library.movies;
 const tvChannels = {};
 tvChannels.titles = [];
