@@ -2,7 +2,7 @@
     "env": {
         "browser": true,
         "commonjs": true,
-        "es6": false,
+        "es6": true,
         "node": true
     },
     "extends": [
@@ -16,12 +16,10 @@
         "ecmaVersion": 2018
     },
     "rules": {
-        "prefer-arrow-callback": 0,
         "func-names": "off",
         "prefer-destructuring": "off",
         "no-console": "off",
         "max-len": "off",
-        "no-var": "off",
         "prefer-template": "off",
         "no-alert": "off",
         "operator-assignment": "off"
