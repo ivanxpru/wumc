@@ -1,15 +1,10 @@
-// eslint-disable-next-line import/no-unresolved
-import { movies } from '../../data/movies.json';
-// eslint-disable-next-line import/no-unresolved
-import { serials } from '../../data/serials.json';
-// import channels from '../../?data/tv.json';
-
-const fs = require('fs');
 const express = require('express');
-const library = require('../modules/library');
+const fs = require('fs');
 
 const router = express.Router();
-
+const library = require('../modules/library');
+const movies = require('../../data/movies.json');
+const serials = require('../../data/serials.json');
 
 const sortTitles = (a, b) => {
   if (a.title < b.title) {
