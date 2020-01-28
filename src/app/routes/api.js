@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
 import { movies } from '../../?data/movies.json';
 // eslint-disable-next-line import/no-unresolved
-import serials from '../../?data/serials.json';
+import { serials } from '../../?data/serials.json';
 // import channels from '../../?data/tv.json';
 
 const fs = require('fs');
@@ -54,7 +54,7 @@ router.get('/movies', (_req, res) => {
   if (!fs.existsSync('./dist/data/movies.json')) {
     library.getMovies();
   }
-  movies.titles.forEach(function (movie) {
+  movies.titles.forEach((movie) => {
     titles.push(movie);
   });
   titles.sort(sortTitles);
