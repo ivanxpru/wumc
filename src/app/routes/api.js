@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
-import movies from '../../data/movies.json';
+import { movies } from '../../data/movies.json';
 // eslint-disable-next-line import/no-unresolved
-import serials from '../../data/serials.json';
+import { serials } from '../../data/serials.json';
 // import channels from '../../?data/tv.json';
 
 const fs = require('fs');
