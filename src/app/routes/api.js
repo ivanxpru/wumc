@@ -2,7 +2,7 @@ const express = require('express');
 const fs = require('fs');
 
 const router = express.Router();
-import library from '../modules/library';
+import { library } from '../modules/library';
 const movies = require('../../data/movies.json');
 const serials = require('../../data/serials.json');
 

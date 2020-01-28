@@ -96,5 +96,3 @@ exports.getSerials = () => {
   });
   fs.writeFileSync('./dist/data/serials.json', JSON.stringify(serialsTitles, '', 4));
 };
-
-exports.default = () => {};
