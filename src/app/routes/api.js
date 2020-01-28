@@ -50,7 +50,7 @@ router.get('/movies', (_req, res) => {
     library.getMovies();
   }
   console.log(movies);
-  movies.titles.forEach((movie) => {
+  movies.titles.forEach(function (movie) {
     titles.push(movie);
   });
   titles.sort(sortTitles);
