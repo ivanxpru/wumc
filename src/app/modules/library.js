@@ -1,9 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const config = require('../../config.json');
 // const tv = config.library.tv;
-// const config = require('../../config.json');
-const config = JSON.parse(fs.readFileSync('../../config.json'));
 const movies = config.library.movies;
 const tvChannels = {};
 tvChannels.titles = [];
