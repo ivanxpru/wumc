@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const router = express.Router();
 const library = require('../modules/library');
-const movies = JSON.parse(fs.readFileSync('../../data/movies.json', 'utf-8'))
+const movies = JSON.parse(fs.readFileSync('./dist/data/movies.json', 'utf-8'))
 // const movies = require('../../data/movies.json');
 const serials = require('../../data/serials.json');
 
