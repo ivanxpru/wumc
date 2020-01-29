@@ -2,7 +2,6 @@ const express = require('express');
 const fs = require('fs');
 
 const router = express.Router();
-let movies = {};
 const library = require('../modules/library');
 // const movies = require('../../data/movies.json');
 const serials = require('../../data/serials.json');
@@ -52,7 +51,7 @@ router.get('/movies', (_req, res) => {
   if (!fs.existsSync('../../data/movies.json')) {
     library.getMovies();
   }
-  movies = require('../../data/movies.json');
+  const movies = fs.readFileSync('../../data/movies.json');
   movies.titles.forEach((movie) => {
     titles.push(movie);
   });
