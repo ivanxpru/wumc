@@ -7,9 +7,6 @@ const config = require('../../config.json');
 const movies = config.library.movies;
 const tvChannels = {};
 tvChannels.titles = [];
-const moviesGenres = [];
-const moviesTitles = {};
-moviesTitles.titles = [];
 const serials = config.library.serials;
 const serialsGenres = [];
 const serialsTitles = {};
@@ -42,6 +39,9 @@ exports.getTV = () => {
 };
 */
 exports.getMovies = () => {
+  const moviesGenres = [];
+  const moviesTitles = {};
+  moviesTitles.titles = [];
   movies.forEach((data) => {
     const genres = getFolders(data.directory);
     genres.forEach((genre) => {
