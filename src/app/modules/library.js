@@ -62,7 +62,7 @@ exports.getMovies = () => {
       });
     });
   });
-  fs.writeFileSync('./src/data/movies.json', JSON.stringify(moviesTitles, '', 4));
+  fs.writeFileSync('../../data/movies.json', JSON.stringify(moviesTitles, '', 4));
 };
 
 exports.getSerials = () => {
