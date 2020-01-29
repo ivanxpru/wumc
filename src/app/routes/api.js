@@ -19,18 +19,6 @@ const sortTitles = (a, b) => {
 library.getMovies();
 library.getSerials();
 
-function getData(url) {
-  const response = fetch(url);
-  let json = {};
-  if (response.ok) { // если HTTP-статус в диапазоне 200-299
-  // получаем тело ответа (см. про этот метод ниже)
-    json = response.json();
-  } else {
-    alert('Ошибка HTTP: ' + response.status);
-  }
-  return json;
-}
-
 // Обновление каталога
 router.get('/update', (_req, res) => {
   // library.getTV();
@@ -67,8 +55,7 @@ router.get('/movies', (_req, res) => {
   if (!fs.existsSync('./dist/data/movies.json')) {
     library.getMovies();
   }
-  movies = getData('/data/movies.json');
-  console.log(movies);
+  movies = fs.readFileSync('./dist/data/movies.json');
   movies.titles.forEach((movie) => {
     titles.push(movie);
   });
