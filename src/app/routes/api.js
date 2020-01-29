@@ -4,7 +4,7 @@ const fs = require('fs');
 const router = express.Router();
 const library = require('../modules/library');
 // const movies = require('../../data/movies.json');
-const serials = require('../../data/serials.json');
+// const serials = require('../../data/serials.json');
 
 const sortTitles = (a, b) => {
   if (a.title < b.title) {
