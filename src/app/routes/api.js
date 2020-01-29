@@ -52,10 +52,10 @@ router.get('/tv', function (req, res) {
 router.get('/movies', (_req, res) => {
   const response = {};
   const titles = [];
-  if (!fs.existsSync('./dist/data/movies.json')) {
+  if (!fs.existsSync('../../data/movies.json')) {
     library.getMovies();
   }
-  movies = fs.readFileSync('./dist/data/movies.json');
+  movies = fs.readFileSync('../../data/movies.json');
   movies.titles.forEach((movie) => {
     titles.push(movie);
   });
