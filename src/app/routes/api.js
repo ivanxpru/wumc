@@ -3,9 +3,11 @@ const fs = require('fs');
 
 const router = express.Router();
 const library = require('../modules/library');
-const movies = require('../../data/movies.json');
+const movies = JSON.parse(fs.readFileSync('../../data/movies.json', 'utf-8'))
+// const movies = require('../../data/movies.json');
 const serials = require('../../data/serials.json');
 
+console.log(movies);
 const sortTitles = (a, b) => {
   if (a.title < b.title) {
     return -1;
@@ -50,7 +52,7 @@ router.get('/movies', (_req, res) => {
     library.getMovies();
   }
   console.log(movies);
-  movies.titles.forEach(function (movie) {
+  movies.titles.forEach((movie) => {
     titles.push(movie);
   });
   titles.sort(sortTitles);
