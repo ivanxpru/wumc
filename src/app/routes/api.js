@@ -46,6 +46,7 @@ router.get('/tv', function (req, res) {
 
 // Полный каталог фильмов
 router.get('/movies', (_req, res) => {
+  console.log(_req.ip);
   const response = {};
   const titles = [];
   if (!fs.existsSync('../../data/movies.json')) {
