@@ -52,8 +52,8 @@ router.get('/movies', (_req, res) => {
   if (!fs.existsSync('../../data/movies.json')) {
     library.getMovies();
   }
-  const movies = JSON.parse(fs.readFileSync('../../data/movies.json'));
-  fs.unlinkSync('../../data/movies.json');
+  let movies = {};
+  movies = JSON.parse(fs.readFileSync('../../data/movies.json'));
   movies.titles.forEach((movie) => {
     titles.push(movie);
   });
