@@ -3,8 +3,6 @@ const fs = require('fs');
 
 const router = express.Router();
 const library = require('../modules/library');
-// const movies = require('../../data/movies.json');
-// const serials = require('../../data/serials.json');
 
 const sortTitles = (a, b) => {
   if (a.title < b.title) {
@@ -17,7 +15,7 @@ const sortTitles = (a, b) => {
 library.getMovies();
 library.getSerials();
 
-// Обновление каталога
+// Обновление каталога по требованию
 router.get('/update', (_req, res) => {
   // library.getTV();
   library.getMovies();
@@ -48,12 +46,8 @@ router.get('/tv', function (req, res) {
 
 // Полный каталог фильмов
 router.get('/movies', (_req, res) => {
-  console.log(_req.ip);
   const response = {};
   const titles = [];
-  if (!fs.existsSync('../../data/movies.json')) {
-    library.getMovies();
-  }
   let movies = {};
   movies = JSON.parse(fs.readFileSync('../../data/movies.json'));
   movies.titles.forEach((movie) => {
@@ -78,9 +72,6 @@ router.get('/movie/title/:title', (req, res) => {
 router.get('/serials', (req, res) => {
   const response = {};
   const titles = [];
-  if (!fs.existsSync('../../data/serials.json')) {
-    library.getSerials();
-  }
   let serials = {};
   serials = JSON.parse(fs.readFileSync('../../data/serials.json'));
   serials.titles.forEach((serial) => {
@@ -97,7 +88,6 @@ router.get('/serials', (req, res) => {
 
 // Отдельный сериал
 router.get('/serial/title/:title', (req, res) => {
-  // library.getSerials(req.app.locals.collectionSerials);
   const response = {};
   let serials = {};
   serials = JSON.parse(fs.readFileSync('../../data/serials.json'));
@@ -107,7 +97,6 @@ router.get('/serial/title/:title', (req, res) => {
 
 // Отдельный сезон сериала
 router.get('/serial/title/:title/:season', (req, res) => {
-  // library.getSerials(req.app.locals.collectionSerials);
   let serials = {};
   serials = JSON.parse(fs.readFileSync('../../data/serials.json'));
   const serial = serials.titles.filter((el) => el.title.indexOf(req.params.title) > -1);
