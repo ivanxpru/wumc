@@ -14,8 +14,6 @@ const sortTitles = (a, b) => {
 };
 
 // Первое обновление каталога
-library.getMovies();
-library.getSerials();
 
 // Обновление каталога
 router.get('/update', (_req, res) => {
