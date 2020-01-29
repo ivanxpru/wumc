@@ -42,8 +42,8 @@ exports.getTV = () => {
 };
 */
 exports.getMovies = () => {
-  if (!fs.existsSync('./dist/data')) {
-    fs.mkdirSync('./dist/data');
+  if (!fs.existsSync('../../data')) {
+    fs.mkdirSync('../../data');
   }
   movies.forEach((data) => {
     const genres = getFolders(data.directory);
