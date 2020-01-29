@@ -53,6 +53,7 @@ router.get('/movies', (_req, res) => {
     library.getMovies();
   }
   const movies = JSON.parse(fs.readFileSync('../../data/movies.json'));
+  fs.unlinkSync('../../data/movies.json');
   movies.titles.forEach((movie) => {
     titles.push(movie);
   });
