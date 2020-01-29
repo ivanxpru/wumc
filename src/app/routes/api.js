@@ -3,17 +3,33 @@ const fs = require('fs');
 
 const router = express.Router();
 const library = require('../modules/library');
-const movies = JSON.parse(fs.readFileSync('./dist/data/movies.json', 'utf-8'))
+
+let movies = {};
 // const movies = require('../../data/movies.json');
 const serials = require('../../data/serials.json');
 
-console.log(movies);
 const sortTitles = (a, b) => {
   if (a.title < b.title) {
     return -1;
   }
   return 1;
 };
+
+// Первое обновление каталога
+library.getMovies();
+library.getSerials();
+
+function getData(url) {
+  const response = fetch(url);
+  let json = {};
+  if (response.ok) { // если HTTP-статус в диапазоне 200-299
+  // получаем тело ответа (см. про этот метод ниже)
+    json = response.json();
+  } else {
+    alert('Ошибка HTTP: ' + response.status);
+  }
+  return json;
+}
 
 // Обновление каталога
 router.get('/update', (_req, res) => {
@@ -51,6 +67,7 @@ router.get('/movies', (_req, res) => {
   if (!fs.existsSync('./dist/data/movies.json')) {
     library.getMovies();
   }
+  movies = getData('/data/movies.json');
   console.log(movies);
   movies.titles.forEach((movie) => {
     titles.push(movie);

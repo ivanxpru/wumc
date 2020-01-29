@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/styles', express.static('./dist/public/assets/styles'));
 app.use('/scripts', express.static('./dist/public/assets/scripts'));
+app.use('/data', express.static('./dist/data'));
 
 app.set('views', './dist/app/views/pages');
 app.set('view engine', 'pug');
