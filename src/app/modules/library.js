@@ -63,9 +63,6 @@ exports.getMovies = () => {
 };
 
 exports.getSerials = () => {
-  if (!fs.existsSync('./dist/data')) {
-    fs.mkdirSync('./dist/data');
-  }
   serials.forEach((data) => {
     const genres = getFolders(data.directory);
     genres.forEach((genre) => {
