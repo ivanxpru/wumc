@@ -42,9 +42,6 @@ exports.getTV = () => {
 };
 */
 exports.getMovies = () => {
-  if (!fs.existsSync('../../data')) {
-    fs.mkdirSync('../../data');
-  }
   movies.forEach((data) => {
     const genres = getFolders(data.directory);
     genres.forEach((genre) => {
@@ -62,7 +59,7 @@ exports.getMovies = () => {
       });
     });
   });
-  fs.writeFileSync('./../data/movies.json', JSON.stringify(moviesTitles, '', 4));
+  fs.writeFileSync('../../data/movies.json', JSON.stringify(moviesTitles, '', 4));
 };
 
 exports.getSerials = () => {
