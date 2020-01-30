@@ -11,7 +11,7 @@ const port = window.location.port;
 const path = window.location.pathname;
 const xhr = new XMLHttpRequest();
 const url = protocol + '//' + hostname + ':' + port + '/api' + path;
-let wiiu;
+const wiiu = {};
 let lastScroll = 0;
 
 menuItem.classList.add('menu__item--active');
