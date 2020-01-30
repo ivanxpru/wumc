@@ -24,8 +24,8 @@ heroWatch.className = 'hero__watch';
 
 xhr.open('GET', url);
 xhr.onreadystatechange = function () {
-  if (xhr.readyState === 4) {
-    if (xhr.status !== 200) {
+  if (xhr.readyState == 4) {
+    if (xhr.status != 200) {
       alert('ERR');
     } else {
       data = JSON.parse(xhr.response);
