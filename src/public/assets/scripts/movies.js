@@ -52,7 +52,7 @@ heroWrap.appendChild(heroWatch);
 hero.style.backgroundSize = 'cover';
 hero.appendChild(heroWrap);
 
-if (wiiu.gamepad) {
+if (window.wiiu.gamepad) {
   setInterval(() => {
     wiiu.gamepad.update();
     if (wiiu.gamepad.lStickY > 0) {
