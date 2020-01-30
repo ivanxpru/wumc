@@ -24,7 +24,7 @@ heroWatch.className = 'hero__watch';
 xhr.open('GET', url, true);
 xhr.send();
 if (xhr.status !== 200) {
-  alert(xhr.status + ': ' + xhr.statusText);
+  console.log(xhr.status + ': ' + xhr.statusText);
 } else {
   data = JSON.parse(xhr.response);
 }
