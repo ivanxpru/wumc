@@ -21,13 +21,26 @@ heroHeader.className = 'hero__header';
 heroTitle.className = 'hero__title';
 heroCovers.className = 'hero__covers covers';
 heroWatch.className = 'hero__watch';
+
 xhr.open('GET', url);
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === 4) {
+    if (xhr.status !== 200) {
+      alert('ERR');
+    } else {
+      data = JSON.parse(xhr.response);
+    }
+  }
+};
 xhr.send();
+/*
 if (xhr.status !== 200) {
   console.log(xhr.status + ': ' + xhr.statusText);
 } else {
   data = JSON.parse(xhr.response);
 }
+*/
+
 heroTitle.innerText = 'Movies';
 heroHeader.appendChild(heroTitle);
 data.titles.forEach((movie) => {
