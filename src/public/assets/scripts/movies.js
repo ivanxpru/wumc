@@ -29,6 +29,7 @@ xhr.onreadystatechange = function () {
       alert('ERR');
     } else {
       data = JSON.parse(xhr.response);
+      console.log(data);
     }
   }
 };
