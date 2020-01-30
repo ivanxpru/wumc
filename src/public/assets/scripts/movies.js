@@ -52,14 +52,14 @@ heroWrap.appendChild(heroWatch);
 hero.style.backgroundSize = 'cover';
 hero.appendChild(heroWrap);
 
-if (window.wiiu.gamepad) {
+if (wiiu.gamepad) {
   setInterval(() => {
     wiiu.gamepad.update();
-    if (window.wiiu.gamepad.lStickY > 0) {
-      lastScroll = lastScroll - Math.abs(window.wiiu.gamepad.lStickY * 20);
+    if (wiiu.gamepad.lStickY > 0) {
+      lastScroll = lastScroll - Math.abs(wiiu.gamepad.lStickY * 20);
     }
-    if (window.wiiu.gamepad.lStickY < 0) {
-      lastScroll = lastScroll + Math.abs(window.wiiu.gamepad.lStickY * 20);
+    if (wiiu.gamepad.lStickY < 0) {
+      lastScroll = lastScroll + Math.abs(wiiu.gamepad.lStickY * 20);
     }
     if (lastScroll > heroCovers.scrollHeight - heroCovers.clientHeight) {
       lastScroll = heroCovers.scrollHeight - heroCovers.clientHeight;
