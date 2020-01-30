@@ -2,13 +2,9 @@ const fs = require('fs');
 const path = require('path');
 
 const config = require('../../config.json');
-// const tv = config.library.tv;
-const tvChannels = {};
-tvChannels.titles = [];
 
 const getFolders = (directory) => {
   const folders = [];
-  console.log(directory);
   fs.readdirSync(directory)
     .forEach((pathString) => {
       if (fs.lstatSync(path.resolve(directory, pathString)).isDirectory()) {
@@ -17,8 +13,12 @@ const getFolders = (directory) => {
     });
   return folders;
 };
+
 /*
 exports.getTV = () => {
+  const tv = config.library.tv;
+  const tvChannels = {};
+  tvChannels.titles = [];
   tv.forEach(function (data) {
     let channels = getFolders(data.directory);
     channels.forEach (function(channel) {

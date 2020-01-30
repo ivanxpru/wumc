@@ -21,7 +21,7 @@ heroHeader.className = 'hero__header';
 heroTitle.className = 'hero__title';
 heroCovers.className = 'hero__covers covers';
 heroWatch.className = 'hero__watch';
-xhr.open('GET', url, false);
+xhr.open('GET', url, true);
 xhr.send();
 if (xhr.status !== 200) {
   alert(xhr.status + ': ' + xhr.statusText);
