@@ -29,7 +29,17 @@ xhr.onreadystatechange = function () {
       alert('ERR');
     } else {
       data = JSON.parse(xhr.response);
-      console.log(data);
+      data.titles.forEach((movie) => {
+        const coverLink = document.createElement('a');
+        const heroCover = document.createElement('div');
+        coverLink.className = 'cover__link';
+        coverLink.href = '/movie/title/' + movie.title;
+        heroCover.className = 'hero__cover cover';
+        heroCover.style.background = "url('" + protocol + '//' + hostname + movie.path + "/poster.jpg') no-repeat center center";
+        heroCover.style.backgroundSize = 'contain';
+        coverLink.appendChild(heroCover);
+        heroCovers.appendChild(coverLink);
+      });
     }
   }
 };
@@ -44,17 +54,6 @@ if (xhr.status !== 200) {
 
 heroTitle.innerText = 'Movies';
 heroHeader.appendChild(heroTitle);
-data.titles.forEach((movie) => {
-  const coverLink = document.createElement('a');
-  const heroCover = document.createElement('div');
-  coverLink.className = 'cover__link';
-  coverLink.href = '/movie/title/' + movie.title;
-  heroCover.className = 'hero__cover cover';
-  heroCover.style.background = "url('" + protocol + '//' + hostname + movie.path + "/poster.jpg') no-repeat center center";
-  heroCover.style.backgroundSize = 'contain';
-  coverLink.appendChild(heroCover);
-  heroCovers.appendChild(coverLink);
-});
 heroWrap.appendChild(heroHeader);
 heroWrap.appendChild(heroCovers);
 heroWrap.appendChild(heroWatch);
