@@ -11,7 +11,6 @@ const port = window.location.port;
 const path = window.location.pathname;
 const xhr = new XMLHttpRequest();
 const url = protocol + '//' + hostname + ':' + port + '/api' + path;
-
 let lastScroll = 0;
 
 menuItem.classList.add('menu__item--active');
@@ -52,13 +51,19 @@ heroWrap.appendChild(heroWatch);
 hero.style.backgroundSize = 'cover';
 hero.appendChild(heroWrap);
 
+// eslint-disable-next-line no-undef
 if (wiiu.gamepad) {
   setInterval(() => {
+    // eslint-disable-next-line no-undef
     wiiu.gamepad.update();
+    // eslint-disable-next-line no-undef
     if (wiiu.gamepad.lStickY > 0) {
+      // eslint-disable-next-line no-undef
       lastScroll = lastScroll - Math.abs(wiiu.gamepad.lStickY * 20);
     }
+    // eslint-disable-next-line no-undef
     if (wiiu.gamepad.lStickY < 0) {
+      // eslint-disable-next-line no-undef
       lastScroll = lastScroll + Math.abs(wiiu.gamepad.lStickY * 20);
     }
     if (lastScroll > heroCovers.scrollHeight - heroCovers.clientHeight) {
