@@ -11,7 +11,7 @@ const port = window.location.port;
 const path = window.location.pathname;
 const xhr = new XMLHttpRequest();
 const url = protocol + '//' + hostname + ':' + port + '/api' + path;
-const wiiu = {};
+
 let lastScroll = 0;
 
 menuItem.classList.add('menu__item--active');
@@ -54,7 +54,7 @@ hero.appendChild(heroWrap);
 
 if (window.wiiu.gamepad) {
   setInterval(() => {
-    window.wiiu.gamepad.update();
+    wiiu.gamepad.update();
     if (window.wiiu.gamepad.lStickY > 0) {
       lastScroll = lastScroll - Math.abs(window.wiiu.gamepad.lStickY * 20);
     }
