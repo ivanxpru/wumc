@@ -1,6 +1,14 @@
+const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
-const config = require('../config.json');
+
+const getConfig = () => {
+  let config = {};
+  config = JSON.parse(fs.readFileSync('./dist/config.json'));
+  return config;
+};
+
+const config = getConfig();
 
 const app = express();
 const appPort = config.express.port;

@@ -6,7 +6,6 @@ const globImporter = require('node-sass-glob-importer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
   target: 'node',
   node: {
     fs: 'empty',
@@ -70,6 +69,7 @@ module.exports = {
     }),
     new CopyPlugin([
       { from: './src/app/views', to: './app/views' },
+      { from: './src/config.json', tp: './config.json'}
     ]),
   ],
 };
