@@ -42,7 +42,7 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: [
-              ['@babel/preset-env',
+              ['es2015-script',
                 { modules: false }],
             ],
           },
