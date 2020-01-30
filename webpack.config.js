@@ -1,7 +1,8 @@
-
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const CopyPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const globImporter = require('node-sass-glob-importer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
@@ -17,13 +18,13 @@ module.exports = {
   },
   externals: [nodeExternals()], // Need this to avoid error when working with Express
   entry: {
-    'public/assets/scripts/channels': './src/public/assets/scripts/channels.js',
-    'public/assets/scripts/movie': './src/public/assets/scripts/movie.js',
-    'public/assets/scripts/movies': './src/public/assets/scripts/movies.js',
-    'public/assets/scripts/season': './src/public/assets/scripts/season.js',
-    'public/assets/scripts/serial': './src/public/assets/scripts/serial.js',
-    'public/assets/scripts/serials': './src/public/assets/scripts/serials.js',
-    'public/assets/scripts/slideshow': './src/public/assets/scripts/slideshow.js',
+    'public/assets/scripts/channels': './src/assets/scripts/channels.js',
+    'public/assets/scripts/movie': './src/assets/scripts/movie.js',
+    'public/assets/scripts/movies': './src/assets/scripts/movies.js',
+    'public/assets/scripts/season': './src/assets/scripts/season.js',
+    'public/assets/scripts/serial': './src/assets/scripts/serial.js',
+    'public/assets/scripts/serials': './src/assets/scripts/serials.js',
+    'public/assets/scripts/slideshow': './src/assets/scripts/slideshow.js',
     app: './src/index.js',
   },
   output: {
@@ -42,13 +43,33 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                importer: globImporter(),
+              },
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: 'public/assets/styles/styles.css',
+      chunkFilename: '[id].css',
+    }),
     new CopyPlugin([
       { from: './src/app/views', to: './app/views' },
-      { from: './src/public/assets/styles', to: './public/assets/styles' }, // replace it with sass-loader
     ]),
   ],
 };

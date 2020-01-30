@@ -1,0 +1,30 @@
+@import 'blocks/*.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: #2f3640;
+  color: #f5f6fa;
+  font-family: sans-serif;
+}
+
+img,
+video {
+  height: 100%;
+  width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

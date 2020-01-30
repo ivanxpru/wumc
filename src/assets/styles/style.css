@@ -93,6 +93,22 @@ a {
   text-align: justify;
 }
 
+.hero__link {
+  position: relative;
+  left: -50%;
+  text-transform: uppercase;
+  border: 3px solid white;
+  padding: 10px 47px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.hero__link--season {
+  display: inline-block;
+  left: 0;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
 .hero__covers {
   position: relative;
   width: 100%;
@@ -114,12 +130,15 @@ a {
   padding-left: 58px;
 }
 
-.cover__link {
-  /*display: inline-block;*/
+.hero__watch {
+  position: absolute;
+  z-index: 10;
+  bottom: 18%;
+  left: 50%;
 }
 
-.cover__link--overview {
-  float: left;
+.hero__watch--more {
+  bottom: 10%;
 }
 
 .cover {
@@ -132,41 +151,8 @@ a {
   height: 310px;
 }
 
-.hero__watch {
-  position: absolute;
-  z-index: 10;
-  bottom: 18%;
-  left: 50%;
-}
-
-.hero__watch--more {
-  bottom: 10%;
-}
-
-.hero__link {
-  position: relative;
-  left: -50%;
-  text-transform: uppercase;
-  border: 3px solid white;
-  padding: 10px 47px;
-  background: rgba(0, 0, 0, 0.3)
-}
-
-.hero__link--season {
-  display: inline-block;
-  left: 0;
-  margin-right: 15px;
-  margin-bottom: 15px;
-}
-
-.navbar {
-  position: fixed;
-  bottom: 0;
-  left:0;
-  width: 100%;
-  height: 48px;
-  background: #e84118;
-  z-index: 100;
+.cover__link--overview {
+  float: left;
 }
 
 .menu {
@@ -199,4 +185,14 @@ a {
 
 .menu__item:last-child {
   border-right: none;
+}
+
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left:0;
+  width: 100%;
+  height: 48px;
+  background: #e84118;
+  z-index: 100;
 }
