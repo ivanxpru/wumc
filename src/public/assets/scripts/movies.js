@@ -11,7 +11,6 @@ const port = window.location.port;
 const path = window.location.pathname;
 const xhr = new XMLHttpRequest();
 const url = protocol + '//' + hostname + ':' + port + '/api' + path;
-let data;
 let wiiu;
 let lastScroll = 0;
 
@@ -24,11 +23,11 @@ heroWatch.className = 'hero__watch';
 
 xhr.open('GET', url);
 xhr.onreadystatechange = function () {
-  if (xhr.readyState == 4) {
-    if (xhr.status != 200) {
-      alert('ERR');
+  if (xhr.readyState === 4) {
+    if (xhr.status !== 200) {
+      console.log(xhr.status);
     } else {
-      data = JSON.parse(xhr.response);
+      const data = JSON.parse(xhr.response);
       data.titles.forEach((movie) => {
         const coverLink = document.createElement('a');
         const heroCover = document.createElement('div');
@@ -44,13 +43,6 @@ xhr.onreadystatechange = function () {
   }
 };
 xhr.send();
-/*
-if (xhr.status !== 200) {
-  console.log(xhr.status + ': ' + xhr.statusText);
-} else {
-  data = JSON.parse(xhr.response);
-}
-*/
 
 heroTitle.innerText = 'Movies';
 heroHeader.appendChild(heroTitle);
