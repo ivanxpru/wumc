@@ -20,6 +20,36 @@ heroTitle.className = 'hero__title';
 heroCovers.className = 'hero__covers covers';
 heroWatch.className = 'hero__watch';
 
+const getXhrData = (url) => {
+  const xhr = new XMLHttpRequest();
+  const data;
+  xhr.open('GET', url);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status !== 200) {
+        console.log(xhr.status);
+      } else {
+        return data = JSON.parse(xhr.response);
+      }
+    }
+  };
+  xhr.send();
+}
+
+let data = getXhrData(url);
+data.titles.forEach((movie) => {
+  const coverLink = document.createElement('a');
+  const heroCover = document.createElement('div');
+  coverLink.className = 'cover__link';
+  coverLink.href = '/movie/title/' + movie.title;
+  heroCover.className = 'hero__cover cover';
+  heroCover.style.background = "url('" + protocol + '//' + hostname + movie.path + "/poster.jpg') no-repeat center center";
+  heroCover.style.backgroundSize = 'contain';
+  coverLink.appendChild(heroCover);
+  heroCovers.appendChild(coverLink);
+});
+
+/*
 xhr.open('GET', url);
 xhr.onreadystatechange = function () {
   if (xhr.readyState === 4) {
@@ -42,6 +72,7 @@ xhr.onreadystatechange = function () {
   }
 };
 xhr.send();
+*/
 
 heroTitle.innerText = 'Movies';
 heroHeader.appendChild(heroTitle);
