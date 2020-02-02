@@ -14,19 +14,19 @@ const path = window.location.pathname;
 const url = protocol + '//' + hostname + ':' + port + '/api/' + path;
 
 xhr.getXhrData(url)
-.then (data => {
-  data.titles.forEach((serial) => {
-    const coverLink = document.createElement('a');
-    const heroCover = document.createElement('div');
-    coverLink.className = 'cover__link';
-    coverLink.href = '/serial/title/' + serial.title;
-    heroCover.className = 'hero__cover cover';
-    heroCover.style.background = "url('" + protocol + '//' + hostname + serial.path + "/poster.jpg') no-repeat center center";
-    heroCover.style.backgroundSize = 'contain';
-    coverLink.appendChild(heroCover);
-    heroCovers.appendChild(coverLink);
+  .then((data) => {
+    data.titles.forEach((serial) => {
+      const coverLink = document.createElement('a');
+      const heroCover = document.createElement('div');
+      coverLink.className = 'cover__link';
+      coverLink.href = '/serial/title/' + serial.title;
+      heroCover.className = 'hero__cover cover';
+      heroCover.style.background = "url('" + protocol + '//' + hostname + serial.path + "/poster.jpg') no-repeat center center";
+      heroCover.style.backgroundSize = 'contain';
+      coverLink.appendChild(heroCover);
+      heroCovers.appendChild(coverLink);
+    });
   });
-});
 
 footerSerials.classList.add('menu__item--active');
 heroWrap.className = 'hero__wrap';

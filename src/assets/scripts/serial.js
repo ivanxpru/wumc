@@ -13,21 +13,21 @@ const path = window.location.pathname;
 const url = protocol + '//' + hostname + ':' + port + '/api/' + path;
 
 xhr.getXhrData(url)
-.then (data => {
-  heroTitle.innerText = data.titles[0].title;
-  data.titles[0].seasons.forEach((season) => {
-    const coverLink = document.createElement('a');
-    const heroCover = document.createElement('div');
-    coverLink.className = 'cover__link';
-    coverLink.href = '/serial/title/' + data.titles[0].title + '/' + season.title;
-    heroCover.className = 'hero__cover cover';
-    heroCover.style.background = "url('" + protocol + '//' + hostname + data.titles[0].path + '/' + season.title + "/poster.jpg') no-repeat center center";
-    heroCover.style.backgroundSize = 'contain';
-    coverLink.appendChild(heroCover);
-    heroCovers.appendChild(coverLink);
+  .then((data) => {
+    heroTitle.innerText = data.titles[0].title;
+    data.titles[0].seasons.forEach((season) => {
+      const coverLink = document.createElement('a');
+      const heroCover = document.createElement('div');
+      coverLink.className = 'cover__link';
+      coverLink.href = '/serial/title/' + data.titles[0].title + '/' + season.title;
+      heroCover.className = 'hero__cover cover';
+      heroCover.style.background = "url('" + protocol + '//' + hostname + data.titles[0].path + '/' + season.title + "/poster.jpg') no-repeat center center";
+      heroCover.style.backgroundSize = 'contain';
+      coverLink.appendChild(heroCover);
+      heroCovers.appendChild(coverLink);
+    });
+    hero.style.background = "url('" + protocol + '//' + hostname + data.titles[0].path + "/background.jpg') no-repeat center center";
   });
-  hero.style.background = "url('" + protocol + '//' + hostname + data.titles[0].path + "/background.jpg') no-repeat center center";
-});
 
 heroWrap.className = 'hero__wrap';
 heroHeader.className = 'hero__header';

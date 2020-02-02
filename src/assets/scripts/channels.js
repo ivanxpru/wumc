@@ -15,7 +15,7 @@ const url = protocol + '//' + hostname + ':' + port + '/api' + path;
 let lastScroll = 0;
 
 xhr.getXhrData(url)
-  .then (data => {
+  .then((data) => {
     data.titles.forEach((channel) => {
       const heroChannel = document.createElement('li');
       const channelLink = document.createElement('a');
@@ -25,8 +25,8 @@ xhr.getXhrData(url)
       channelLink.innerText = channel.name;
       heroChannel.appendChild(channelLink);
       heroPlaylist.appendChild(heroChannel);
+    });
   });
-});
 
 menuItem.classList.add('menu__item--active');
 heroWrap.className = 'hero__wrap';

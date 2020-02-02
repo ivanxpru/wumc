@@ -15,17 +15,16 @@ const hostname = window.location.hostname;
 const port = window.location.port;
 const path = window.location.pathname;
 const url = protocol + '//' + hostname + ':' + port + '/api/' + path;
-let data;
 
 xhr.getXhrData(url)
-.then (data => {
-  heroTitle.innerText = data.titles[0].title;
-  heroGenre.innerText = '#' + data.titles[0].genre;
-  heroOverview.innerText = data.titles[0].overview;
-  heroLink.href = protocol + '//' + hostname + data.titles[0].path + '/playlist.m3u8';
-  heroCover.style.background = "url('" + protocol + '//' + hostname + data.titles[0].path + "/poster.jpg') no-repeat center center";
-  hero.style.background = "url('" + protocol + '//' + hostname + data.titles[0].path + "/background.jpg') no-repeat center center";
-});
+  .then((data) => {
+    heroTitle.innerText = data.titles[0].title;
+    heroGenre.innerText = '#' + data.titles[0].genre;
+    heroOverview.innerText = data.titles[0].overview;
+    heroLink.href = protocol + '//' + hostname + data.titles[0].path + '/playlist.m3u8';
+    heroCover.style.background = "url('" + protocol + '//' + hostname + data.titles[0].path + "/poster.jpg') no-repeat center center";
+    hero.style.background = "url('" + protocol + '//' + hostname + data.titles[0].path + "/background.jpg') no-repeat center center";
+  });
 
 heroWrap.className = 'hero__wrap';
 heroHeader.className = 'hero__header';

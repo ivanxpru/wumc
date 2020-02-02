@@ -32,22 +32,22 @@ function createSlide() {
     type = 'serial';
   }
   xhr.getXhrData(url)
-  .then(data => {
-    heroTitle.innerText = data.titles[0].title;
-    heroGenre.innerText = '#' + data.titles[0].genre;
-    heroHeader.appendChild(heroTitle);
-    heroOverview.innerText = data.titles[0].overview;
-    heroOverview.appendChild(heroGenre);
-    heroLink.href = protocol + '//' + hostname + ':' + port + '/' + type + '/title/' + data.titles[0].title;
-    heroLink.innerText = 'watch';
-    heroWatch.appendChild(heroLink);
-    heroWrap.appendChild(heroHeader);
-    heroWrap.appendChild(heroOverview);
-    heroWrap.appendChild(heroWatch);
-    hero.style.background = "url('" + protocol + '//' + hostname + '/' + data.titles[0].path + "/background.jpg') no-repeat center center";
-    hero.style.backgroundSize = 'cover';
-    hero.appendChild(heroWrap);
-  });
+    .then((data) => {
+      heroTitle.innerText = data.titles[0].title;
+      heroGenre.innerText = '#' + data.titles[0].genre;
+      heroHeader.appendChild(heroTitle);
+      heroOverview.innerText = data.titles[0].overview;
+      heroOverview.appendChild(heroGenre);
+      heroLink.href = protocol + '//' + hostname + ':' + port + '/' + type + '/title/' + data.titles[0].title;
+      heroLink.innerText = 'watch';
+      heroWatch.appendChild(heroLink);
+      heroWrap.appendChild(heroHeader);
+      heroWrap.appendChild(heroOverview);
+      heroWrap.appendChild(heroWatch);
+      hero.style.background = "url('" + protocol + '//' + hostname + '/' + data.titles[0].path + "/background.jpg') no-repeat center center";
+      hero.style.backgroundSize = 'cover';
+      hero.appendChild(heroWrap);
+    });
 }
 
 function removeSlide() {

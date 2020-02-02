@@ -15,19 +15,19 @@ const url = protocol + '//' + hostname + ':' + port + '/api' + path;
 let lastScroll = 0;
 
 xhr.getXhrData(url)
-.then (data => {
-  data.titles.forEach((movie) => {
-    const coverLink = document.createElement('a');
-    const heroCover = document.createElement('div');
-    coverLink.className = 'cover__link';
-    coverLink.href = '/movie/title/' + movie.title;
-    heroCover.className = 'hero__cover cover';
-    heroCover.style.background = "url('" + protocol + '//' + hostname + movie.path + "/poster.jpg') no-repeat center center";
-    heroCover.style.backgroundSize = 'contain';
-    coverLink.appendChild(heroCover);
-    heroCovers.appendChild(coverLink);
+  .then((data) => {
+    data.titles.forEach((movie) => {
+      const coverLink = document.createElement('a');
+      const heroCover = document.createElement('div');
+      coverLink.className = 'cover__link';
+      coverLink.href = '/movie/title/' + movie.title;
+      heroCover.className = 'hero__cover cover';
+      heroCover.style.background = "url('" + protocol + '//' + hostname + movie.path + "/poster.jpg') no-repeat center center";
+      heroCover.style.backgroundSize = 'contain';
+      coverLink.appendChild(heroCover);
+      heroCovers.appendChild(coverLink);
+    });
   });
-});
 
 menuItem.classList.add('menu__item--active');
 heroWrap.className = 'hero__wrap';

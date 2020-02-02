@@ -16,18 +16,18 @@ const url = protocol + '//' + hostname + ':' + port + '/api/' + path;
 let lastScroll = 0;
 
 xhr.getXhrData(url)
-.then (data => {
-  heroTitle.innerText = data.titles[0].title + ' • ' + data.titles[0].seasons[0].title;
-  coverLink.href = '/serial/title/' + data.titles[0].title;
-  data.titles[0].seasons[0].episodes.forEach((episode) => {
-    const heroEpisode = document.createElement('li');
-    heroEpisode.className = 'hero__episode';
-    heroEpisode.innerHTML = "<a href='" + protocol + '//' + hostname + data.titles[0].path + '/' + data.titles[0].seasons[0].title + '/' + episode.replace('?', '%3f') + "/playlist.m3u8'>" + episode.split(/\.(.+)/)[1] + '</a>';
-    heroPlaylist.appendChild(heroEpisode);
+  .then((data) => {
+    heroTitle.innerText = data.titles[0].title + ' • ' + data.titles[0].seasons[0].title;
+    coverLink.href = '/serial/title/' + data.titles[0].title;
+    data.titles[0].seasons[0].episodes.forEach((episode) => {
+      const heroEpisode = document.createElement('li');
+      heroEpisode.className = 'hero__episode';
+      heroEpisode.innerHTML = "<a href='" + protocol + '//' + hostname + data.titles[0].path + '/' + data.titles[0].seasons[0].title + '/' + episode.replace('?', '%3f') + "/playlist.m3u8'>" + episode.split(/\.(.+)/)[1] + '</a>';
+      heroPlaylist.appendChild(heroEpisode);
+    });
+    heroCover.style.background = "url('" + protocol + '//' + hostname + data.titles[0].path + '/' + data.titles[0].seasons[0].title + "/poster.jpg') no-repeat left center";
+    hero.style.background = "url('" + protocol + '//' + hostname + data.titles[0].path + '/' + data.titles[0].seasons[0].title + "/background.jpg') no-repeat center center";
   });
-  heroCover.style.background = "url('" + protocol + '//' + hostname + data.titles[0].path + '/' + data.titles[0].seasons[0].title + "/poster.jpg') no-repeat left center";
-  hero.style.background = "url('" + protocol + '//' + hostname + data.titles[0].path + '/' + data.titles[0].seasons[0].title + "/background.jpg') no-repeat center center";
-});
 
 heroWrap.className = 'hero__wrap';
 coverLink.className = 'cover__link cover__link--overview';
@@ -46,13 +46,20 @@ heroWrap.appendChild(heroOverview);
 hero.style.backgroundSize = 'cover';
 hero.appendChild(heroWrap);
 
+// eslint-disable-next-line no-undef
 if (wiiu.gamepad) {
   setInterval(() => {
+    // eslint-disable-next-line no-undef
     wiiu.gamepad.update();
+    // eslint-disable-next-line no-undef
+    // eslint-disable-next-line no-undef
     if (wiiu.gamepad.lStickY > 0) {
+      // eslint-disable-next-line no-undef
       lastScroll = lastScroll - Math.abs(wiiu.gamepad.lStickY * 20);
     }
+    // eslint-disable-next-line no-undef
     if (wiiu.gamepad.lStickY < 0) {
+      // eslint-disable-next-line no-undef
       lastScroll = lastScroll + Math.abs(wiiu.gamepad.lStickY * 20);
     }
     if (lastScroll > heroOverview.scrollHeight - heroOverview.clientHeight) {
