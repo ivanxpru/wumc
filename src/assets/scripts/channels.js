@@ -1,3 +1,5 @@
+const xhr = require('./modules/xhr');
+
 const menuItem = document.getElementById('tv');
 const hero = document.getElementById('hero');
 const heroWrap = document.createElement('div');
@@ -5,7 +7,6 @@ const heroHeader = document.createElement('header');
 const heroTitle = document.createElement('h2');
 const heroPlaylist = document.createElement('ol');
 const heroOverview = document.createElement('div');
-const xhr = new XMLHttpRequest();
 const protocol = window.location.protocol;
 const hostname = window.location.hostname;
 const port = window.location.port;
@@ -13,18 +14,8 @@ const path = window.location.pathname;
 const url = protocol + '//' + hostname + ':' + port + '/api' + path;
 let lastScroll = 0;
 
-menuItem.classList.add('menu__item--active');
-heroWrap.className = 'hero__wrap';
-heroHeader.className = 'hero__header';
-heroTitle.className = 'hero__title';
-heroPlaylist.className = 'hero__playlist';
-heroOverview.className = 'hero__overview';
-xhr.open('GET', url);
-if (xhr.readyState === 4) {
-  if (xhr.status !== 200) {
-    console.log(xhr.status);
-  } else {
-    const data = JSON.parse(xhr.response);
+xhr.getXhrData(url)
+  .then (data => {
     data.titles.forEach((channel) => {
       const heroChannel = document.createElement('li');
       const channelLink = document.createElement('a');
@@ -34,10 +25,15 @@ if (xhr.readyState === 4) {
       channelLink.innerText = channel.name;
       heroChannel.appendChild(channelLink);
       heroPlaylist.appendChild(heroChannel);
-    });
-  }
-}
-xhr.send();
+  });
+});
+
+menuItem.classList.add('menu__item--active');
+heroWrap.className = 'hero__wrap';
+heroHeader.className = 'hero__header';
+heroTitle.className = 'hero__title';
+heroPlaylist.className = 'hero__playlist';
+heroOverview.className = 'hero__overview';
 heroTitle.innerText = 'TV Channels';
 heroHeader.appendChild(heroTitle);
 // hero.style.background = "url('http://192.168.1.35" + data.titles[0].path + "/background.jpg') no-repeat center center";

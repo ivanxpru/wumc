@@ -1,3 +1,5 @@
+const xhr = require('./modules/xhr');
+
 const hero = document.getElementById('hero');
 const heroWrap = document.createElement('div');
 const heroHeader = document.createElement('header');
@@ -9,7 +11,8 @@ const heroLink = document.createElement('a');
 const protocol = window.location.protocol;
 const hostname = window.location.hostname;
 const port = window.location.port;
-let data;
+let url;
+let type;
 let opacity = 0;
 
 heroWrap.className = 'hero__wrap hero__wrap--index';
@@ -21,9 +24,6 @@ heroWatch.className = 'hero__watch';
 heroLink.className = 'hero__link';
 
 function createSlide() {
-  let url;
-  let type;
-  const xhr = new XMLHttpRequest();
   if (Math.random() > 0.5) {
     url = protocol + '//' + hostname + ':' + port + '/api/movies/random';
     type = 'movie';
@@ -31,27 +31,23 @@ function createSlide() {
     url = protocol + '//' + hostname + ':' + port + '/api/serials/random';
     type = 'serial';
   }
-  xhr.open('GET', url, false);
-  xhr.send();
-  if (xhr.status !== 200) {
-    alert(xhr.status + ': ' + xhr.statusText);
-  } else {
-    data = JSON.parse(xhr.response);
-  }
-  heroTitle.innerText = data.titles[0].title;
-  heroGenre.innerText = '#' + data.titles[0].genre;
-  heroHeader.appendChild(heroTitle);
-  heroOverview.innerText = data.titles[0].overview;
-  heroOverview.appendChild(heroGenre);
-  heroLink.href = protocol + '//' + hostname + ':' + port + '/' + type + '/title/' + data.titles[0].title;
-  heroLink.innerText = 'watch';
-  heroWatch.appendChild(heroLink);
-  heroWrap.appendChild(heroHeader);
-  heroWrap.appendChild(heroOverview);
-  heroWrap.appendChild(heroWatch);
-  hero.style.background = "url('" + protocol + '//' + hostname + '/' + data.titles[0].path + "/background.jpg') no-repeat center center";
-  hero.style.backgroundSize = 'cover';
-  hero.appendChild(heroWrap);
+  xhr.getXhrData(url)
+  .then(data => {
+    heroTitle.innerText = data.titles[0].title;
+    heroGenre.innerText = '#' + data.titles[0].genre;
+    heroHeader.appendChild(heroTitle);
+    heroOverview.innerText = data.titles[0].overview;
+    heroOverview.appendChild(heroGenre);
+    heroLink.href = protocol + '//' + hostname + ':' + port + '/' + type + '/title/' + data.titles[0].title;
+    heroLink.innerText = 'watch';
+    heroWatch.appendChild(heroLink);
+    heroWrap.appendChild(heroHeader);
+    heroWrap.appendChild(heroOverview);
+    heroWrap.appendChild(heroWatch);
+    hero.style.background = "url('" + protocol + '//' + hostname + '/' + data.titles[0].path + "/background.jpg') no-repeat center center";
+    hero.style.backgroundSize = 'cover';
+    hero.appendChild(heroWrap);
+  });
 }
 
 function removeSlide() {
