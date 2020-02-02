@@ -69,7 +69,7 @@ module.exports = {
     }),
     new CopyPlugin([
       { from: './src/app/views', to: './app/views' },
-      { from: './src/config.json', tp: './config.json'}
+      { from: './src/config.json', to: './config.json'}
     ]),
   ],
 };
