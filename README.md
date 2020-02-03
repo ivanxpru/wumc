@@ -28,9 +28,11 @@
 Теперь разберём подготовку медиафайлов для просмотра.
 
  Начнём с подготовки фильма. Фильмы будут хранится в директории `/media/movies`. Далее в этой директории необходимо создать дополнительные директории со списком жанров. Например: `adventure  drama  family  fantasy  sci-fi  thriller`. Зайдите в директорию, наиболее близкую по жанру для вашего фильма и создайте там директорию с названием фильма. Например, у вас получится так: `/media/wumc/movies/sci-fi/Ready Player One`. Далее внутри директории с фильмом необходимо разместить три файла:
- **poster.jpg** - постер фильма. Размер 220x330 px.
- **background.jpg** - фоновое изображение. Размер  1920x1080 px.
- **overview.txt** - краткое описание фильма.
+ ```
+ poster.jpg - постер фильма. Размер 220x330 px.
+ background.jpg - фоновое изображение. Размер  1920x1080 px.
+ overview.txt - краткое описание фильма.
+ ```
  Всё необходимое можно найти на сайте [themoviedb.org](https://www.themoviedb.org/) или любом другом.
 Всё готово для кодирования фильма. Зайдём в директорию с фильмом и введём команду: 
 `ffmpeg -i ~/Downloads/Your_film.mkv -map 0:0 -map 0:1 -c:v copy -c:a aac -b:a 160k -ac 2 -movflags +faststart  -bsf:v h264_mp4toannexb -start_number 0 -hls_time 10 -hls_list_size 0 -f hls -hls_segment_filename video_seg%3d.ts playlist.m3u8`.
